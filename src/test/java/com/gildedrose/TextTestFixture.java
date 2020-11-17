@@ -1,8 +1,7 @@
 package com.gildedrose;
 
-public class TexttestFixture {
+public class TextTestFixture {
     public static void main(String[] args) {
-        System.out.println("OMGHAI!");
 
         Item[] items = new Item[] {
                 new Item("+5 Dexterity Vest", 10, 20), //
