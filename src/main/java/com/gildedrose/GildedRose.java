@@ -22,17 +22,28 @@ class GildedRose {
             item.sellIn = item.sellIn - 1;
             
             if (item.name.equals("Aged Brie")) {
-                // it was not explicitly defined in the rules yet previously it was coded that
+                // not explicitly defined in the requirements yet previously it was coded that
                 // Aged Brie increases twice as fast after the sellIn time.
                 item.quality = item.sellIn < 0 ? item.quality + 2 : item.quality + 1;
             } else {
-                // Once the sell by date has passed, Quality degrades twice as fast
-                item.quality = item.sellIn < 0 ? item.quality - 2 : item.quality - 1;
+                decreaseItemQuality(item);
             }
 
             item.quality = Math.max(item.quality, 0); // The Quality of an item is never negative
             item.quality = Math.min(item.quality, 50); // The Quality of an item is never more than 50
         }
+    }
+    
+    private void decreaseItemQuality(Item item) {
+        // Once the sell by date has passed, Quality degrades twice as fast
+        int decreaseBy = item.sellIn < 0 ? 2 : 1;
+        
+        // "Conjured" items degrade in Quality twice as fast as normal items
+        if (item.name.equals("Conjured Mana Cake")) {
+            decreaseBy *= 2;
+        }
+        
+        item.quality -= decreaseBy;
     }
 
     private void updateConcertTicket(Item ticket) {

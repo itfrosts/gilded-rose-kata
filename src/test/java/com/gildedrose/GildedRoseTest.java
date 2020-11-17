@@ -32,7 +32,9 @@ class GildedRoseTest {
                 Arguments.of("Backstage passes to a TAFKAL80ETC concert", 10, 10, 12), // Ticket quality increases twice when less than 10 days
                 Arguments.of("Backstage passes to a TAFKAL80ETC concert", 5, 10, 13), // Ticket quality increases 3x when less than 5
                 Arguments.of("Backstage passes to a TAFKAL80ETC concert", 0, 10, 0), // Ticket quality drops to 0 after the concert
-                Arguments.of("Aged Brie", -1, 10, 12) // TODO: Figure out if quality should really increase by two after sellIn time
+                Arguments.of("Aged Brie", -1, 10, 12), // TODO: Figure out if quality should really increase by two after sell by date has passed
+                Arguments.of("Conjured Mana Cake", 10, 10, 8), // "Conjured" items degrade in Quality twice as fast as normal items
+                Arguments.of("Conjured Mana Cake", 0, 10, 6)
         );
     }
 
