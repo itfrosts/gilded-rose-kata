@@ -20,29 +20,23 @@ class GildedRose {
             }
 
             if (!item.name.equals("Aged Brie")) {
-                if (item.quality > 0) {
-                    item.quality = item.quality - 1;
-                }
+                item.quality = item.quality - 1;
             } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
+                item.quality = item.quality + 1;
             }
 
             item.sellIn = item.sellIn - 1;
 
             if (item.sellIn < 0) {
                 if (!item.name.equals("Aged Brie")) {
-                    if (item.quality > 0) {
-                        item.quality = item.quality - 1;
-                    }
-
+                    item.quality = item.quality - 1;
                 } else {
-                    if (item.quality < 50) {
-                        item.quality = item.quality + 1;
-                    }
+                    item.quality = item.quality + 1;
                 }
             }
+
+            item.quality = Math.max(item.quality, 0); // The Quality of an item is never negative
+            item.quality = Math.min(item.quality, 50); // The Quality of an item is never more than 50
         }
     }
 
