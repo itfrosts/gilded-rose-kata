@@ -18,21 +18,16 @@ class GildedRose {
                 updateConcertTicket(item);
                 continue;
             }
-
-            if (!item.name.equals("Aged Brie")) {
-                item.quality = item.quality - 1;
-            } else {
-                item.quality = item.quality + 1;
-            }
-
+            
             item.sellIn = item.sellIn - 1;
-
-            if (item.sellIn < 0) {
-                if (!item.name.equals("Aged Brie")) {
-                    item.quality = item.quality - 1;
-                } else {
-                    item.quality = item.quality + 1;
-                }
+            
+            if (item.name.equals("Aged Brie")) {
+                // it was not explicitly defined in the rules yet previously it was coded that
+                // Aged Brie increases twice as fast after the sellIn time.
+                item.quality = item.sellIn < 0 ? item.quality + 2 : item.quality + 1;
+            } else {
+                // Once the sell by date has passed, Quality degrades twice as fast
+                item.quality = item.sellIn < 0 ? item.quality - 2 : item.quality - 1;
             }
 
             item.quality = Math.max(item.quality, 0); // The Quality of an item is never negative
